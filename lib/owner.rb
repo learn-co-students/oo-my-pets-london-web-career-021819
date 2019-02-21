@@ -67,7 +67,7 @@ class Owner
   def sell_pets
 
     @pets.each do |category, pets_array|
-      category = pets_array.collect {|pet| pet.mood = "nervous"}
+      category = pets_array.map {|pet| pet.mood = "nervous"}
     end
 
     @pets = {fishes: [], cats: [], dogs: []}
