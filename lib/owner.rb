@@ -49,19 +49,38 @@ class Owner
   end
 
   def walk_dogs
-    self.pets[:dogs].each { |dog| dog.mood = "happy" }
     # iterate over dogs array and change mood
+    #self.pets[:dogs].each { |dog| dog.mood = "happy" }
+    set_pets_mood(:dogs, "happy")
   end
 
   def play_with_cats
-    self.pets[:cats].each { |cat| cat.mood = "happy" }
+    # self.pets[:cats].each { |cat| cat.mood = "happy" }
+    set_pets_mood(:cats, "happy")
   end
 
   def feed_fish
-    self.pets[:fishes].each { |fish| fish.mood = "happy" }
+    # self.pets[:fishes].each { |fish| fish.mood = "happy" }
+    set_pets_mood(:fishes, "happy")
   end
 
+  def set_pets_mood(pet_type, mood)
+    self.pets[pet_type].each { |pet| pet.mood = mood }
+  end
+
+  # this is a very misleading test!!!
   def sell_pets
+    self.pets.each do |type, pets|
+      pets.each { |pet| pet.mood = "nervous" }
+      pets.clear
+    end
+  end
+
+  def list_pets
+    fish_count = self.pets[:fishes].count
+    dog_count = self.pets[:dogs].count
+    cat_count = self.pets[:cats].count
+    "I have #{fish_count} fish, #{dog_count} dog(s), and #{cat_count} cat(s)."
   end
 
 end
